@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url:      ${DB_URL:jdbc:postgresql://localhost:5432/bento}
+    username: ${DB_USER:bento}
+    password: ${DB_PASSWORD:bento}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enabled: true
+
+bento:
+  security:
+    api-key: ${API_KEY:changeme}
+  discord:
+    token:               ${DISCORD_TOKEN}
+    guild-id:            ${GUILD_ID}
+    welcome-channel-id:  ${WELCOME_CHANNEL_ID}
+    review-channel-id:   ${REVIEW_CHANNEL_ID}
+    general-channel-id:  ${GENERAL_CHANNEL_ID}
+    interviewee-role-id: ${INTERVIEWEE_ROLE_ID}
+    new-kitten-role-id:  ${NEW_KITTEN_ROLE_ID}
+  minecraft:
+    survival:
+      url: ${SURVIVAL_MOD_URL:http://localhost:7070}
+    creative:
+      url: ${CREATIVE_MOD_URL:http://localhost:7071}
+  inactivity:
+    cron:          "0 0 2 * * *"
+    no-show-days:  7
+    inactive-days: 60
+  questions:
+    - "What is your IGN?"
+    - "What is your preferred name?"
+    - "What are your preferred pronouns?"
+    - "How old are you?"
+    - "What are your location and timezone?"
+    - "What's your availability like?"
+    - "How did you hear about us? Please be specific!"
+    - "How long have you been playing Minecraft?"
+    - "What platform do you play on? Bedrock or Java"
+    - "Why did you pick CatCraft?"
+    - "Mayonnaise or Miracle Whip?"
+    - "Any other fun facts we should know? (This is the final question)"

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id":            "bento-mod",
+  "version":       "${version}",
+  "name":          "Bento Mod",
+  "description":   "Companion mod for BentoBot — REST API for whitelist/op management and player join events.",
+  "authors":       ["Edo"],
+  "environment":   "server",
+  "entrypoints": {
+    "main": ["com.bento.mod.BentoMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "fabric-api":   "*",
+    "minecraft":    "26.2"
+  }
+}

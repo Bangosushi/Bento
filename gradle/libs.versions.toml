@@ -1,0 +1,22 @@
+[versions]
+spring-boot = "4.1.1"
+spring-dm   = "1.1.6"
+jda         = "5.1.2"
+flyway      = "10.17.3"
+postgresql  = "42.7.4"
+lombok      = "1.18.42"
+
+[libraries]
+spring-web        = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-jpa        = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-test       = { module = "org.springframework.boot:spring-boot-starter-test" }
+jda               = { module = "net.dv8tion:JDA",                          version.ref = "jda" }
+flyway-core       = { module = "org.flywaydb:flyway-core",                 version.ref = "flyway" }
+flyway-pg         = { module = "org.flywaydb:flyway-database-postgresql",  version.ref = "flyway" }
+postgresql        = { module = "org.postgresql:postgresql",                 version.ref = "postgresql" }
+lombok            = { module = "org.projectlombok:lombok",                 version.ref = "lombok" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot",        version.ref = "spring-boot" }
+spring-dm   = { id = "io.spring.dependency-management", version.ref = "spring-dm" }

@@ -1,0 +1,6 @@
+{
+  "botUrl": "http://bento-bot:8080",
+  "apiKey": "your-secure-api-key-here",
+  "httpPort": 7070,
+  "serverType": "SURVIVAL"
+}

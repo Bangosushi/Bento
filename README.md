@@ -34,7 +34,7 @@ settings.gradle.kts        Project includes
 
 ### How it works
 
-When a player joins the Minecraft server, the Fabric mod detects the join event and sends it to the bot's REST API. The bot runs Discord interview workflows (7 onboarding questions) in a welcome channel, stores responses in PostgreSQL, and syncs whitelist/op status back to the server via the mod. A scheduled cron job (2 AM daily) flags inactive players for removal after configurable thresholds (7 no-show days, 60 inactive days). The bot and mod communicate over HTTP (configurable URLs for survival/creative servers).
+When a player joins the Minecraft server, the Fabric mod detects the join event and sends it to the bot's REST API. The bot runs Discord interview workflows in a welcome channel, collects responses in PostgreSQL, and syncs player whitelist/op status back to the server via the mod. A scheduled cron job flags inactive players for removal after configurable thresholds (7 no-show days, 60 inactive days). The bot and mod communicate over HTTP (configurable URLs for survival/creative servers).
 
 ## Getting Started
 
@@ -69,8 +69,26 @@ When a player joins the Minecraft server, the Fabric mod detects the join event 
    ./gradlew bento-mod:build
    # JAR available at: bento-mod/build/libs/bento-mod-1.0.0.jar
    ```
+5. **Configure the Fabric mod** before running the server:
+   - Copy the built JAR to your server's `mods/` folder
+   - Start the server once to generate the default config
+   - Stop the server and configure `config/bento.json`:
+     ```bash
+     cp docs/bento-config-example.json config/bento.json
+     # Edit with your bot URL and API key
+     ```
+   - Update the following fields:
+     - `botUrl`: The bot's REST API endpoint (e.g., `http://your-bot-host:8080`)
+     - `apiKey`: Must match the bot's `API_KEY` environment variable
+     - `httpPort`: Port for the mod's embedded server (default: 7070)
+     - `serverType`: Either `"SURVIVAL"` or `"CREATIVE"`
+   - Restart the server
+
+   See [docs/bento-config-example.json](docs/bento-config-example.json) for a template.
 
 ## Configuration
+
+### Bot Configuration
 
 The bot is configured via environment variables (see `.env.example`):
 
@@ -78,6 +96,10 @@ The bot is configured via environment variables (see `.env.example`):
 - **Discord:** `DISCORD_TOKEN`, `GUILD_ID`, channel/role IDs for welcome, review, general channels
 - **Minecraft:** `SURVIVAL_MOD_URL`, `CREATIVE_MOD_URL` — URLs where the mod can reach the bot's REST API
 - **Inactivity rules:** Cron schedule and no-show/inactive day thresholds (configurable in `application.yml`)
+
+### Mod Configuration
+
+The Fabric mod is configured via `config/bento.json` (created on first run). See step 5 in Setup above and [docs/bento-config-example.json](docs/bento-config-example.json) for details.
 
 ## Features
 
